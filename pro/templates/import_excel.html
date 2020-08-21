@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block body_block %}
+<div class="container">
+    <div class="jumbotron">
+
+    <h3 style="text-align:center">PLEASE SELECT FILE TO IMPORT ..</h3>
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" enctype="multipart/form-data"  method="post">
+        <table>
+            {{ form.as_table }}
+        </table>
+        {% csrf_token %}
+        <hr/>
+        <input type="submit" value="Submit">
+    </form>
+        <h4 style="text-align:center">{{result}}</h4>
+    </div>
+</div>
+
+
+{% endblock %}
+

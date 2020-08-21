@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block body_block %}
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+
+  <h1>Filter Your Record Here !</h1>
+    <div>
+        <form method="POST">
+            {{ insert_me.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>
+
+        <h5>Query result are as follows: </h5>
+        {% if display %}
+        <table class="table table-hover">
+      <tr>
+      <th> name </th>
+      <th> company </th>
+      <th> salary </th>
+          <th>EDIT/DELETE RECORD</th>
+  </tr>
+    {% for i in display %}
+   <tr>
+        <td>{{ i.name }}</td>
+        <td>{{ i.company }}</td>
+        <td>{{ i.salary }}</td>
+        <td> <a href="{% url 'app:update_single' pk=i.pk %}">Update Employee</a>|<a href="{% url 'app:employee_delete' pk=i.pk %}">Delete Employee</a></td>
+    </tr>
+            {% endfor %}
+       {% else %}
+            <h2>No Record Found ! Try with some other filter ..</h2>
+{% endif %}
+</table>
+    </div>
+    </div>
+</div>
+<h2 style="text-align:center"><a class="nav-link" href="{% url 'app:update' %}">UPDATE RECORDS</a></h2>
+</body>
+{% endblock %}

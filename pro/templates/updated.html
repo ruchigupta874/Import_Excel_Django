@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block body_block %}
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        {% if updated_record %}
+<h5>Updated result are as follows: </h5>
+
+        <table class="table table-hover">
+      <tr>
+      <th> name </th>
+      <th> company </th>
+      <th> salary </th>
+  </tr>
+    {% for i in updated_record %}
+   <tr>
+        <td>{{ i.name }}</td>
+        <td>{{ i.company }}</td>
+        <td>{{ i.salary }}</td>
+    </tr>
+            {% endfor %}
+       {% else %}
+            <h2>No Record Updated ! Select column to update</h2>
+{% endif %}
+</table>
+    </div>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<form method="POST">
+{% csrf_token %}
+    <p>ARE YOU SURE YOU WANT TO DELETE !</p>
+    <input type="submit" value="Confirm">
+    <button onclick="window.history.back();" class="btn btn-default" type="button">Cancel</button>
+</form>
+
+{% endblock %}
